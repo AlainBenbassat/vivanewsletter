@@ -7,6 +7,7 @@ try {
     require_once '../civicrm/civicrm.config.php';
     require_once 'CRM/Core/Config.php';
     $config = CRM_Core_Config::singleton();
+    CRM_Utils_System::loadBootStrap(array(), FALSE);
 
     // see if the email address exists in the database
     $sql = "
@@ -38,6 +39,7 @@ try {
       // create the contact
       $params = [
         'first_name' => $_POST['email'],
+        'contact_type' => 'Individual',
         'api.email.create' => [
           'email' => $_POST['email'],
           'location_type_id' => 1,
