@@ -52,7 +52,7 @@ try {
 
     // add contact to newsletter group
     $params = [
-      'group_id' => 'newsletter',
+      'group_id' => 1515,
       'contact_id' => $contactID,
     ];
     civicrm_api3('GroupContact', 'create', $params);
