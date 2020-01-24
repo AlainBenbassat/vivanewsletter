@@ -1,5 +1,9 @@
 <?php
 
+header('Content-Type: application/json');
+
+$success = FALSE;
+
 try {
   // make sure we have the correct parameters
   if (array_key_exists('email', $_POST) && array_key_exists('language', $_POST)) {
@@ -56,14 +60,21 @@ try {
       'contact_id' => $contactID,
     ];
     civicrm_api3('GroupContact', 'create', $params);
+
+    $success = TRUE;
   }
   else {
-    watchdog('Viva newsletter', 'post parameters not correct');
+    $success = FALSE;
   }
 }
 catch (Exception $e) {
   watchdog('Viva newsletter', $e->getMessage());
+  $success = FALSE;
 }
 
-// redirect to the site
-header("Location: https://www.vivasalud.be");
+if ($success) {
+  echo '{"success":"true"}';
+}
+else {
+  echo '{"success":"false"}';
+}
