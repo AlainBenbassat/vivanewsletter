@@ -58,6 +58,7 @@ try {
     $params = [
       'group_id' => 1515,
       'contact_id' => $contactID,
+      'status' => 'Added',
     ];
     civicrm_api3('GroupContact', 'create', $params);
 
